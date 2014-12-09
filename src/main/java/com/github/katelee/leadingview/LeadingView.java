@@ -48,19 +48,23 @@ public class LeadingView extends RelativeLayout implements View.OnTouchListener 
 
     @Override
     public boolean onTouch(View v, MotionEvent event) {
-        if (areaModel!=null && inRange(event))
+        if (event.getActionMasked() == MotionEvent.ACTION_UP)
         {
-            if (onLeaderListener != null)
+            if (areaModel!=null && inRange(event))
             {
-                onLeaderListener.onClick(v);
+                if (onLeaderListener != null)
+                {
+                    onLeaderListener.onClick(v);
+                }
             }
-        }
-        else
-        {
-            if (onMaskListener != null)
+            else
             {
-                onMaskListener.onClick(v);
+                if (onMaskListener != null)
+                {
+                    onMaskListener.onClick(v);
+                }
             }
+
         }
         return true;
     }
